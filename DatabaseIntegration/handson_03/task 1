@@ -1,0 +1,76 @@
+USE college_db;
+
+-- =====================================================
+-- Task 1: Subqueries
+-- =====================================================
+
+-- Find students belonging to the Computer Science department
+SELECT *
+FROM students
+WHERE department_id =
+(
+    SELECT department_id
+    FROM departments
+    WHERE dept_name = 'Computer Science'
+);
+
+-- Find students enrolled in more courses than the average
+SELECT
+    s.student_id,
+    s.first_name,
+    s.last_name
+FROM students s
+JOIN enrollments e
+ON s.student_id = e.student_id
+GROUP BY
+    s.student_id,
+    s.first_name,
+    s.last_name
+HAVING COUNT(e.course_id) >
+(
+    SELECT AVG(course_count)
+    FROM
+    (
+        SELECT COUNT(*) AS course_count
+        FROM enrollments
+        GROUP BY student_id
+    ) AS avg_table
+);
+
+-- Find courses where every enrolled student received grade 'A'
+SELECT
+    c.course_name,
+    c.course_code
+FROM courses c
+WHERE NOT EXISTS
+(
+    SELECT *
+    FROM enrollments e
+    WHERE c.course_id = e.course_id
+    AND e.grade <> 'A'
+);
+
+-- Find the highest-paid professor in each department
+SELECT
+    p.prof_name,
+    p.department_id,
+    p.salary
+FROM professors p
+WHERE p.salary =
+(
+    SELECT MAX(salary)
+    FROM professors p2
+    WHERE p2.department_id = p.department_id
+);
+
+-- Display departments having average salary greater than 85000
+SELECT *
+FROM
+(
+    SELECT
+        department_id,
+        AVG(salary) AS avg_salary
+    FROM professors
+    GROUP BY department_id
+) AS dept_avg
+WHERE avg_salary > 85000;

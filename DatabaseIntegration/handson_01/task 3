@@ -1,0 +1,29 @@
+-- =====================================================
+-- Task 3: Alter and Extend the Schema
+-- =====================================================
+
+-- Step 1: Add phone_number column to students table
+ALTER TABLE students
+ADD phone_number VARCHAR(15);
+
+-- Step 2: Add max_seats column to courses table
+ALTER TABLE courses
+ADD max_seats INT DEFAULT 60;
+
+-- Step 3: Add CHECK constraint for grade values
+ALTER TABLE enrollments
+ADD CONSTRAINT chk_grade
+CHECK
+(
+    grade IN ('A','B','C','D','F')
+    OR grade IS NULL
+);
+
+-- Step 4: Rename hod_name column to head_of_dept
+ALTER TABLE departments
+RENAME COLUMN hod_name
+TO head_of_dept;
+
+-- Step 5: Remove phone_number column
+ALTER TABLE students
+DROP COLUMN phone_number;

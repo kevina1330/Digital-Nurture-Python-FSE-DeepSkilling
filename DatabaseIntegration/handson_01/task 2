@@ -1,0 +1,22 @@
+-- =====================================================
+-- Task 2: Verify Normalisation
+-- =====================================================
+
+-- 1NF (First Normal Form)
+-- All columns contain only atomic (single) values.
+-- No column stores multiple values in a single field.
+-- Example:
+-- first_name contains only one value.
+-- email contains only one email address.
+
+-- 2NF (Second Normal Form)
+-- Every non-key attribute depends on the entire primary key.
+-- In the enrollments table, grade and enrollment_date
+-- depend on the complete enrollment record.
+-- Therefore, there are no partial dependencies.
+
+-- 3NF (Third Normal Form)
+-- There are no transitive dependencies.
+-- Department details are stored only in the departments table.
+-- The students table stores only department_id.
+-- This avoids data redundancy and satisfies 3NF.

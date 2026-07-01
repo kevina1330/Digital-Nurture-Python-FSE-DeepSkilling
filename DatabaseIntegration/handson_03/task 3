@@ -1,0 +1,126 @@
+-- =====================================================
+-- Task 3: Stored Procedures and Transactions
+-- =====================================================
+
+-- Create Stored Procedure to Enroll Student
+DELIMITER $$
+
+CREATE PROCEDURE sp_enroll_student
+(
+    IN p_student_id INT,
+    IN p_course_id INT,
+    IN p_enrollment_date DATE
+)
+BEGIN
+
+    IF EXISTS
+    (
+        SELECT 1
+        FROM enrollments
+        WHERE student_id = p_student_id
+        AND course_id = p_course_id
+    )
+    THEN
+
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Student is already enrolled in this course';
+
+    ELSE
+
+        INSERT INTO enrollments
+        (
+            student_id,
+            course_id,
+            enrollment_date
+        )
+        VALUES
+        (
+            p_student_id,
+            p_course_id,
+            p_enrollment_date
+        );
+
+    END IF;
+
+END $$
+
+DELIMITER ;
+
+
+
+-- Create Department Transfer Log Table
+CREATE TABLE department_transfer_log
+(
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    old_department INT,
+    new_department INT,
+    transfer_date DATETIME
+);
+
+-- Create Stored Procedure to Transfer Student
+DELIMITER $$
+
+CREATE PROCEDURE sp_transfer_student
+(
+    IN p_student_id INT,
+    IN p_new_department INT
+)
+BEGIN
+
+    DECLARE v_old_department INT;
+
+    START TRANSACTION;
+
+    SELECT department_id
+    INTO v_old_department
+    FROM students
+    WHERE student_id = p_student_id;
+
+    UPDATE students
+    SET department_id = p_new_department
+    WHERE student_id = p_student_id;
+
+    INSERT INTO department_transfer_log
+    (
+        student_id,
+        old_department,
+        new_department,
+        transfer_date
+    )
+    VALUES
+    (
+        p_student_id,
+        v_old_department,
+        p_new_department,
+        NOW()
+    );
+
+    COMMIT;
+
+END $$
+
+DELIMITER ;
+
+-- Test Stored Procedure with Invalid Department
+CALL sp_transfer_student(1,999);
+
+-- Transaction Example
+START TRANSACTION;
+
+SELECT student_id, first_name
+FROM students;
+
+SELECT course_id, course_name
+FROM courses;
+
+START TRANSACTION;
+
+ROLLBACK TO SAVEPOINT sp1;
+
+COMMIT;
+
+-- Verify Enrollment Record
+SELECT *
+FROM enrollments
+WHERE student_id = 9;

@@ -1,0 +1,185 @@
+
+# =====================================================
+# Task 3: Identify and Fix the N+1 Problem
+# =====================================================
+
+# -----------------------------------------------------
+# Step 56: Simulate the N+1 Problem
+# -----------------------------------------------------
+
+import mysql.connector
+
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="karu",
+    database="college_db"
+)
+
+cursor = conn.cursor(dictionary=True)
+
+query_count = 0
+
+# First query
+cursor.execute("SELECT * FROM enrollments")
+enrollments = cursor.fetchall()
+query_count += 1
+
+# One query per enrollment
+for e in enrollments:
+
+    cursor.execute(
+        "SELECT first_name,last_name FROM students WHERE student_id=%s",
+        (e["student_id"],)
+    )
+
+    student = cursor.fetchone()
+
+    query_count += 1
+
+    print(
+        student["first_name"],
+        student["last_name"]
+    )
+
+print("Queries Executed =", query_count)
+
+cursor.close()
+conn.close()
+
+
+# -----------------------------------------------------
+# Step 57: Fix the N+1 Problem Using JOIN
+# -----------------------------------------------------
+
+import mysql.connector
+
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="karu",
+    database="college_db"
+)
+
+cursor = conn.cursor(dictionary=True)
+
+cursor.execute("""
+SELECT
+    e.enrollment_id,
+    s.first_name,
+    s.last_name,
+    c.course_name,
+    e.grade
+FROM enrollments e
+JOIN students s
+ON e.student_id = s.student_id
+JOIN courses c
+ON e.course_id = c.course_id;
+""")
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)
+
+print("Total Queries Executed: 1")
+
+cursor.close()
+conn.close()
+
+
+# -----------------------------------------------------
+# Step 58: Compare N+1 Query and JOIN Performance
+# -----------------------------------------------------
+
+import mysql.connector
+import time
+
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="karu",
+    database="college_db"
+)
+
+cursor = conn.cursor(dictionary=True)
+
+# ----------------------------
+# N+1 Query Version
+# ----------------------------
+
+start = time.time()
+
+query_count = 0
+
+cursor.execute("SELECT * FROM enrollments")
+enrollments = cursor.fetchall()
+query_count += 1
+
+for e in enrollments:
+
+    cursor.execute(
+        "SELECT first_name,last_name FROM students WHERE student_id=%s",
+        (e["student_id"],)
+    )
+
+    cursor.fetchone()
+
+    query_count += 1
+
+end = time.time()
+
+print("N+1 Queries =", query_count)
+print("N+1 Time =", end - start)
+
+# ----------------------------
+# JOIN Version
+# ----------------------------
+
+start = time.time()
+
+cursor.execute("""
+SELECT
+    e.enrollment_id,
+    s.first_name,
+    s.last_name,
+    c.course_name,
+    e.grade
+FROM enrollments e
+JOIN students s
+ON e.student_id = s.student_id
+JOIN courses c
+ON e.course_id = c.course_id;
+""")
+
+rows = cursor.fetchall()
+
+end = time.time()
+
+print("JOIN Queries = 1")
+print("JOIN Time =", end - start)
+
+cursor.close()
+conn.close()
+
+
+# -----------------------------------------------------
+# Step 59: Document the N+1 Problem
+# -----------------------------------------------------
+
+"""
+N+1 Query Problem
+
+If there are 10,000 enrollments:
+
+1 query retrieves all enrollments.
+
+Then 10,000 additional queries are executed
+to fetch each student's details.
+
+Total queries = 10,001.
+
+Using a JOIN retrieves all required data in a
+single query, reducing database round-trips
+and significantly improving performance.
+"""
