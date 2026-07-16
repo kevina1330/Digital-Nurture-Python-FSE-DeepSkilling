@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - JavaScript Enhanced</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="site-name">Student Portal</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#" class="active">Courses</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Grades</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <h1>Welcome to the Student Portal</h1>
+            <p>Your gateway to academic success. Manage your courses, track grades, and stay informed.</p>
+            <button>Explore Courses</button>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses">
+            <h2>My Courses</h2>
+            
+            <!-- Controls -->
+            <div class="controls">
+                <input type="text" id="search-courses" placeholder="Search courses...">
+                <button id="sort-credits">Sort by Credits</button>
+            </div>
+            
+            <!-- Course Grid (populated by JavaScript) -->
+            <div class="course-grid"></div>
+            
+            <!-- Total Credits -->
+            <p id="total-credits"></p>
+            
+            <!-- Selected Course Display -->
+            <div id="selected-course"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Student Portal. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
