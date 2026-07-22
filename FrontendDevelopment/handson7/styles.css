@@ -1,0 +1,475 @@
+/* ============================================================
+   CSS RESET
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #2d3748;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   HEADER STYLES
+   ============================================================ */
+.header {
+    background-color: #c62828; /* Angular Red */
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.header .site-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.header .angular-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.header nav ul li a:hover {
+    color: #ffcdd2;
+}
+
+.header nav ul li a.active {
+    color: #ffcdd2;
+    border-bottom: 2px solid #ffcdd2;
+}
+
+.header .enrolled-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+/* ============================================================
+   HERO SECTION STYLES
+   ============================================================ */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%);
+    color: white;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+}
+
+.hero button {
+    padding: 0.75rem 2rem;
+    background-color: white;
+    color: #c62828;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================
+   MAIN CONTENT STYLES
+   ============================================================ */
+.main-content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2d3748;
+}
+
+/* ============================================================
+   CONTROLS STYLES
+   ============================================================ */
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls input {
+    padding: 0.5rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+}
+
+.controls input:focus {
+    outline: none;
+    border-color: #c62828;
+}
+
+/* ============================================================
+   COURSE GRID STYLES
+   ============================================================ */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.course-card {
+    background: white;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #c62828;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.course-card h3 {
+    color: #c62828;
+    margin-bottom: 0.5rem;
+}
+
+.course-card p {
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+.course-card .credits {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background-color: #ffebee;
+    color: #c62828;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.course-card .btn-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.course-card .enroll-btn {
+    padding: 0.5rem 1rem;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.course-card .enroll-btn:hover {
+    background-color: #b71c1c;
+}
+
+.course-card .enroll-btn.enrolled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+/* ============================================================
+   COURSE DETAIL STYLES
+   ============================================================ */
+.course-detail {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.course-detail .back-btn {
+    padding: 0.5rem 1rem;
+    background-color: #718096;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.course-detail .back-btn:hover {
+    background-color: #4a5568;
+}
+
+.course-detail h1 {
+    color: #c62828;
+    margin-bottom: 0.5rem;
+}
+
+.course-detail .description-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+.course-detail .enroll-btn {
+    padding: 0.75rem 2rem;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.course-detail .enroll-btn:hover {
+    background-color: #b71c1c;
+}
+
+.course-detail .enroll-btn.enrolled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+/* ============================================================
+   ENROLLED SECTION STYLES
+   ============================================================ */
+.enrolled-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 8px;
+}
+
+.enrolled-section h3 {
+    margin-bottom: 0.5rem;
+    color: #c62828;
+}
+
+.enrolled-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.enrolled-section ul li {
+    padding: 0.5rem 0;
+    color: #2d3748;
+    border-bottom: 1px solid #ffcdd2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.enrolled-section .remove-btn {
+    padding: 0.25rem 0.75rem;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.enrolled-section .remove-btn:hover {
+    background-color: #b71c1c;
+}
+
+/* ============================================================
+   PROFILE FORM STYLES
+   ============================================================ */
+.profile-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.profile-form h3 {
+    margin-bottom: 1rem;
+    color: #c62828;
+}
+
+.profile-form .form-group {
+    margin-bottom: 0.75rem;
+}
+
+.profile-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.profile-form input {
+    padding: 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.profile-form input:focus {
+    outline: none;
+    border-color: #c62828;
+}
+
+.profile-form .error-message {
+    color: #c62828;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.profile-form .btn-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.profile-form .save-btn {
+    padding: 0.5rem 1rem;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-form .save-btn:hover {
+    background-color: #b71c1c;
+}
+
+.profile-form .save-btn:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+.profile-form .cancel-btn {
+    padding: 0.5rem 1rem;
+    background-color: #718096;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-form .cancel-btn:hover {
+    background-color: #4a5568;
+}
+
+.profile-form .edit-btn {
+    padding: 0.5rem 1rem;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-form .edit-btn:hover {
+    background-color: #b71c1c;
+}
+
+/* ============================================================
+   LOADING STYLES
+   ============================================================ */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #718096;
+}
+
+/* ============================================================
+   FOOTER STYLES
+   ============================================================ */
+.footer {
+    background-color: #2d3748;
+    color: #a0aec0;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.footer .angular-credit {
+    color: #c62828;
+    font-weight: 600;
+}
+
+/* ============================================================
+   RESPONSIVE STYLES
+   ============================================================ */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-form input {
+        max-width: 100%;
+    }
+}

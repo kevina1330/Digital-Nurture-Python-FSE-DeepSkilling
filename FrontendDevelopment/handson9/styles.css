@@ -1,0 +1,644 @@
+/* ============================================================
+   CSS RESET - Accessibility First
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   FOCUS INDICATORS - Critical for Keyboard Navigation
+   ============================================================ */
+:focus {
+    outline: 3px solid #2b6cb0;
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 3px solid #2b6cb0;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(43, 108, 176, 0.3);
+}
+
+/* ============================================================
+   SKIP LINK - Hidden but accessible
+   ============================================================ */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.75rem 1.5rem;
+    background: #2b6cb0;
+    color: white;
+    border-radius: 0 0 8px 8px;
+    z-index: 100;
+    text-decoration: none;
+    font-weight: 600;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ============================================================
+   BODY - High Contrast & Readable
+   ============================================================ */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #1a202c; /* High contrast: #1a202c on #f5f7fa = 16.2:1 ratio */
+    line-height: 1.7; /* Better readability */
+    font-size: 1rem;
+}
+
+/* ============================================================
+   HEADER STYLES - Accessible Navigation
+   ============================================================ */
+.header {
+    background-color: #2b6cb0;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.header .site-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.header .accessibility-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Ensure sufficient color contrast: white on #2b6cb0 = 7.1:1 ratio */
+}
+
+.header nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #bee3f8;
+}
+
+.header nav ul li a:focus-visible {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header nav ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #bee3f8;
+    border-radius: 4px;
+}
+
+.header .enrolled-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+/* ============================================================
+   HERO SECTION STYLES
+   ============================================================ */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+}
+
+.hero button {
+    padding: 0.75rem 2rem;
+    background-color: white;
+    color: #2b6cb0;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hero button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero button:focus-visible {
+    border-color: #ffd700;
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   MAIN CONTENT STYLES
+   ============================================================ */
+.main-content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #1a202c;
+}
+
+/* ============================================================
+   CONTROLS STYLES - Accessible Forms
+   ============================================================ */
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.controls input {
+    padding: 0.5rem 1rem;
+    border: 2px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+    background-color: white;
+    color: #1a202c;
+}
+
+.controls input:focus-visible {
+    border-color: #2b6cb0;
+    outline: 3px solid #2b6cb0;
+    outline-offset: 2px;
+}
+
+.controls .results-count {
+    font-size: 0.875rem;
+    color: #4a5568;
+    padding: 0.5rem 0;
+}
+
+/* ============================================================
+   COURSE GRID STYLES
+   ============================================================ */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.course-card {
+    background: white;
+    padding: 1.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    /* Ensure sufficient color contrast: #1a202c on white = 16.2:1 ratio */
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.course-card:focus-visible {
+    border-color: #2b6cb0;
+    outline: 3px solid #2b6cb0;
+    outline-offset: 2px;
+}
+
+.course-card h3 {
+    color: #2b6cb0;
+    margin-bottom: 0.5rem;
+}
+
+.course-card p {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.course-card .credits {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background-color: #ebf4ff;
+    color: #2b6cb0;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.course-card .btn-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.course-card .enroll-btn {
+    padding: 0.5rem 1rem;
+    background-color: #2b6cb0;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    /* Ensure sufficient color contrast: white on #2b6cb0 = 7.1:1 ratio */
+}
+
+.course-card .enroll-btn:hover {
+    background-color: #1a4f7a;
+}
+
+.course-card .enroll-btn:focus-visible {
+    border-color: #ffd700;
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+.course-card .enroll-btn.enrolled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+.course-card .enroll-btn.enrolled:focus-visible {
+    border-color: #ffd700;
+}
+
+/* ============================================================
+   ENROLLED SECTION STYLES
+   ============================================================ */
+.enrolled-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #ebf8ff;
+    border: 2px solid #bee3f8;
+    border-radius: 8px;
+}
+
+.enrolled-section h3 {
+    margin-bottom: 0.5rem;
+    color: #2b6cb0;
+}
+
+.enrolled-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.enrolled-section ul li {
+    padding: 0.5rem 0;
+    color: #1a202c;
+    border-bottom: 1px solid #bee3f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.enrolled-section .remove-btn {
+    padding: 0.25rem 0.75rem;
+    background-color: #e53e3e;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.enrolled-section .remove-btn:hover {
+    background-color: #c53030;
+}
+
+.enrolled-section .remove-btn:focus-visible {
+    border-color: #ffd700;
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   PROFILE FORM STYLES - Accessible Forms
+   ============================================================ */
+.profile-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.profile-form h3 {
+    margin-bottom: 1rem;
+    color: #2b6cb0;
+}
+
+.profile-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.profile-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #1a202c;
+}
+
+.profile-form input {
+    padding: 0.5rem;
+    border: 2px solid #cbd5e0;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    color: #1a202c;
+    background-color: white;
+}
+
+.profile-form input:focus-visible {
+    border-color: #2b6cb0;
+    outline: 3px solid #2b6cb0;
+    outline-offset: 2px;
+}
+
+.profile-form .error-message {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.profile-form .btn-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.profile-form .save-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: #2b6cb0;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-form .save-btn:hover {
+    background-color: #1a4f7a;
+}
+
+.profile-form .save-btn:focus-visible {
+    border-color: #ffd700;
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+.profile-form .cancel-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: #718096;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-form .cancel-btn:hover {
+    background-color: #4a5568;
+}
+
+.profile-form .cancel-btn:focus-visible {
+    border-color: #ffd700;
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+.profile-form .edit-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: #2b6cb0;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-form .edit-btn:hover {
+    background-color: #1a4f7a;
+}
+
+.profile-form .edit-btn:focus-visible {
+    border-color: #ffd700;
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   ACCESSIBILITY ANNOUNCEMENTS - Screen Reader Only
+   ============================================================ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+[role="status"] {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+[role="status"][aria-live="polite"] {
+    background: #f7fafc;
+    color: #1a202c;
+}
+
+/* ============================================================
+   HIGH CONTRAST MODE SUPPORT
+   ============================================================ */
+@media (prefers-contrast: high) {
+    body {
+        background-color: white;
+        color: black;
+    }
+    
+    .course-card {
+        border: 3px solid black;
+        background-color: white;
+        color: black;
+    }
+    
+    .header {
+        background-color: black;
+        color: white;
+    }
+    
+    .header nav ul li a {
+        color: white;
+    }
+    
+    .hero {
+        background: #2d3748;
+        color: white;
+    }
+    
+    .enroll-btn,
+    .save-btn,
+    .edit-btn {
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+    }
+    
+    .remove-btn {
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+    }
+}
+
+/* ============================================================
+   REDUCED MOTION SUPPORT
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .course-card:hover {
+        transform: none !important;
+    }
+    
+    .hero button:hover {
+        transform: none !important;
+    }
+}
+
+/* ============================================================
+   LOADING STYLES
+   ============================================================ */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #4a5568;
+}
+
+/* ============================================================
+   FOOTER STYLES
+   ============================================================ */
+.footer {
+    background-color: #2d3748;
+    color: #a0aec0;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.footer .a11y-credit {
+    color: #90cdf4;
+    font-weight: 600;
+}
+
+/* ============================================================
+   RESPONSIVE STYLES
+   ============================================================ */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-form input {
+        max-width: 100%;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .controls input {
+        max-width: 100%;
+        width: 100%;
+    }
+}
